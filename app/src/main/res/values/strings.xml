@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Famous Movies</string>
+    <string name="details">Details</string>
+    <string name="movie_list">Movie List</string>
+    <string name="overview">Overview</string>
+    <string name="vote_average">Rating:</string>
+    <string name="title">Title</string>
+    <string name="no_connection">No connection!</string>
+    <string name="no_connection_load_image">No connection to download an image!</string>
+    <string name="loading">Loading...</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="not_favorite">Not Favorite</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorites">Favorites</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
+</resources>
