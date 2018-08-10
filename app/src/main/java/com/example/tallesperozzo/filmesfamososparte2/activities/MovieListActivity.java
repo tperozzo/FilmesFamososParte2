@@ -48,6 +48,8 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
     private MovieAdapter movieAdapter;
     private RecyclerView movieRV;
 
+    private GridLayoutManager gridLayoutManager;
+
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +71,13 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
         movieRV = findViewById(R.id.question_rv);
 
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            movieRV.setLayoutManager(new GridLayoutManager(ctx, 2));
+            gridLayoutManager = new GridLayoutManager(ctx, 2);
         }
         else if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            movieRV.setLayoutManager(new GridLayoutManager(ctx, 4));
+            gridLayoutManager = new GridLayoutManager(ctx, 4);
         }
+
+        movieRV.setLayoutManager(gridLayoutManager);
 
         movieAdapter = new MovieAdapter(ctx, movieList, this);
         movieRV.setAdapter(movieAdapter);
@@ -140,9 +144,16 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT) {
-            movieRV.setLayoutManager(new GridLayoutManager(ctx, 2));
+            int pos = gridLayoutManager.findFirstVisibleItemPosition();
+            gridLayoutManager.setSpanCount(2);
+            gridLayoutManager.scrollToPosition(pos*2);
+            movieRV.setLayoutManager(gridLayoutManager);
+
         }else if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
-            movieRV.setLayoutManager(new GridLayoutManager(ctx, 4));
+            int pos = gridLayoutManager.findFirstVisibleItemPosition();
+            gridLayoutManager.setSpanCount(4);
+            gridLayoutManager.scrollToPosition(pos/2);
+            movieRV.setLayoutManager(gridLayoutManager);
         }
     }
 
