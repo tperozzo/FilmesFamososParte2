@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public final class APIUtils {
     private final static String LOG_TAG = APIUtils.class.getSimpleName();
-    private final static String API_KEY = "";
+    private final static String API_KEY = "f827b138334bef6d6591d3678db2a21a";
     private final static String API_KEY_ = "api_key=" + API_KEY;
     public final static String IMAGE_URL = "http://image.tmdb.org/t/p/w185";
     private final static String GENERIC_URL = "http://api.themoviedb.org/3/movie/";

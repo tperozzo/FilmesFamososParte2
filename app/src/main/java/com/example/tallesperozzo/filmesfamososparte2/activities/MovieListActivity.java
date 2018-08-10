@@ -268,14 +268,4 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
 
         }
     }
-
-    //id
-    //title
-    //date
-    //poster_path
-    //vote average
-    //overview
-    //timestamp
-
-
 }
