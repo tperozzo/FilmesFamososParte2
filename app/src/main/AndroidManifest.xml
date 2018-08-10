@@ -29,6 +29,7 @@
 
         <activity android:name="com.example.tallesperozzo.filmesfamososparte2.activities.DetailActivity"
             android:configChanges="orientation"
+            android:parentActivityName="com.example.tallesperozzo.filmesfamososparte2.activities.MovieListActivity"
             android:label="@string/details"/>
         
         <provider
