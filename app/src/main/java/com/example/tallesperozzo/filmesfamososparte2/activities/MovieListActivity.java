@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.tallesperozzo.filmesfamososparte2.classes.APIUtils;
@@ -38,6 +39,9 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
     private final int MOST_POPULAR = 1;
     private final int TOP_RATED = 2;
     private final int FAVORITES = 3;
+
+    private final int COLUMNS_PORTRAIT = 2;
+    private final int COLUMNS_LANDSCAPE = 4;
 
     private int mode = MOST_POPULAR;
 
@@ -71,10 +75,10 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
         movieRV = findViewById(R.id.question_rv);
 
         if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            gridLayoutManager = new GridLayoutManager(ctx, 2);
+            gridLayoutManager = new GridLayoutManager(ctx, COLUMNS_PORTRAIT);
         }
         else if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            gridLayoutManager = new GridLayoutManager(ctx, 4);
+            gridLayoutManager = new GridLayoutManager(ctx, COLUMNS_LANDSCAPE);
         }
 
         movieRV.setLayoutManager(gridLayoutManager);
@@ -105,6 +109,7 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
         movieAdapter.clear();
 
         if(isOnline()) {
+            findViewById(R.id.no_connection_ll).setVisibility(View.GONE);
             if(mode != FAVORITES) {
                 MovieAsyncTask task = new MovieAsyncTask();
                 task.execute(mode);
@@ -115,7 +120,7 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
             }
         }
         else{
-            Toast.makeText(ctx, getString(R.string.no_connection), Toast.LENGTH_SHORT).show();
+            findViewById(R.id.no_connection_ll).setVisibility(View.VISIBLE);
         }
 
     }
@@ -143,16 +148,16 @@ public class MovieListActivity  extends AppCompatActivity implements MovieAdapte
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT) {
+        if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT) {//ok
             int pos = gridLayoutManager.findFirstVisibleItemPosition();
-            gridLayoutManager.setSpanCount(2);
-            gridLayoutManager.scrollToPosition(pos*2);
+            gridLayoutManager.setSpanCount(COLUMNS_PORTRAIT);
+            gridLayoutManager.scrollToPosition(pos+2);
             movieRV.setLayoutManager(gridLayoutManager);
 
         }else if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
             int pos = gridLayoutManager.findFirstVisibleItemPosition();
-            gridLayoutManager.setSpanCount(4);
-            gridLayoutManager.scrollToPosition(pos/2);
+            gridLayoutManager.setSpanCount(COLUMNS_LANDSCAPE);
+            gridLayoutManager.scrollToPosition(pos+2);
             movieRV.setLayoutManager(gridLayoutManager);
         }
     }

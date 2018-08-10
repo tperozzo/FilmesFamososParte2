@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public final class APIUtils {
     private final static String LOG_TAG = APIUtils.class.getSimpleName();
-    private final static String API_KEY = "f827b138334bef6d6591d3678db2a21a";
+    private final static String API_KEY = "";
     private final static String API_KEY_ = "api_key=" + API_KEY;
     public final static String IMAGE_URL = "http://image.tmdb.org/t/p/w185";
     private final static String GENERIC_URL = "http://api.themoviedb.org/3/movie/";
@@ -31,7 +31,7 @@ public final class APIUtils {
     private final static String TOP_RATED_URL = GENERIC_URL + "top_rated?" + API_KEY_;
     private final static String TRAILERS_URL_END = "/videos?" + API_KEY_;
     private final static String REVIEWS_URL_END = "/reviews?" + API_KEY_;
-    //http://api.themoviedb.org/3/movie/299536/videos?api_key=f827b138334bef6d6591d3678db2a21a
+
 
     private final static String UNKNOWN_TITLE = "Unknown title";
     private final static String UNKNOWN_DATE = "Unknown date"; //
